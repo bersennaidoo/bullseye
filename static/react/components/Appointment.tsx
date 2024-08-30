@@ -12,7 +12,24 @@ const Appointment = (props: IAppointmentProps) => {
     const { firstName, lastName, phoneNumber, startsAt } = props
 
     return (
-        <div>{firstName}</div>
+        <div id="appointment" className="container">
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>firstName</th>
+                        <th>lastName</th>
+                        <th>phoneNumber</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{firstName}</td>
+                        <td>{lastName}</td>
+                        <td>{phoneNumber}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     )
 }
 

@@ -7,8 +7,8 @@ describe("AppointmentsDayView", () => {
   let container: HTMLDivElement;
   const today = new Date();
   const twoAppointments: IAppointmentsList[] = [
-    { startsAt: today.setHours(12, 0),  firstName: "Alice" },
-    { startsAt: today.setHours(13, 0), firstName: "Jon" },
+    { startsAt: today.setHours(12, 0),  firstName: "Alice", lastName: "Bree", phoneNumber: "999-999-9999" },
+    { startsAt: today.setHours(13, 0), firstName: "Jon", lastName: "Jonn", phoneNumber: "999-999-8888" },
   ];
 
   beforeEach(() => {
@@ -85,5 +85,16 @@ describe("AppointmentsDayView", () => {
     act(() => button.click())
 
     expect(document.body.textContent).toContain("Jon")
+  })
+
+  it("renders a bootstrap container", () => {
+    render(
+      <AppointmentsDayView 
+        appointments={twoAppointments}
+      />
+    )
+    const divel = document.querySelector("div#appointmentsDayView")
+    let container = divel?.getAttribute("class")
+    expect(container).toEqual("container")
   })
 });

@@ -12,7 +12,7 @@ const AppointmentsDayView = (props: IAppointmentsDayViewProps) => {
   const [selectedAppointment, setSelectedAppointment] = useState(0)
 
   return (
-    <div id="appointmentsDayView">
+    <div id="appointmentsDayView" className="container">
       <ol>
         {appointments?.map((ap, i) => (
           <li key={ap.startsAt}>
