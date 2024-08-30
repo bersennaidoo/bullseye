@@ -1085,7 +1085,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState2(initialState) {
+          function useState3(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1888,7 +1888,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState2;
+          exports.useState = useState3;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2384,9 +2384,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React3 = require_react();
+          var React5 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3993,7 +3993,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React3.Children.forEach(props.children, function(child) {
+                  React5.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -23583,20 +23583,52 @@
   });
 
   // static/react/main.tsx
-  var import_react2 = __toESM(require_react());
+  var import_react4 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // static/react/App.tsx
+  var import_react3 = __toESM(require_react());
+
+  // static/react/components/AppointmentsDayView.tsx
+  var import_react2 = __toESM(require_react());
+
+  // static/react/utils/timeOfDay.ts
+  var appointmentTimeOfDay = (startsAt) => {
+    const [h, m] = new Date(startsAt).toTimeString().split(":");
+    return `${h}:${m}`;
+  };
+
+  // static/react/components/Appointment.tsx
   var import_react = __toESM(require_react());
+  var Appointment = (props) => {
+    const { firstName, lastName, phoneNumber, startsAt } = props;
+    return /* @__PURE__ */ import_react.default.createElement("div", null, firstName);
+  };
+  var Appointment_default = Appointment;
+
+  // static/react/components/AppointmentsDayView.tsx
+  var AppointmentsDayView = (props) => {
+    const { appointments } = props;
+    const [selectedAppointment, setSelectedAppointment] = (0, import_react2.useState)(0);
+    return /* @__PURE__ */ import_react2.default.createElement("div", { id: "appointmentsDayView" }, /* @__PURE__ */ import_react2.default.createElement("ol", null, appointments?.map((ap, i) => /* @__PURE__ */ import_react2.default.createElement("li", { key: ap.startsAt }, /* @__PURE__ */ import_react2.default.createElement("button", { type: "button", onClick: () => setSelectedAppointment(i) }, appointmentTimeOfDay(ap.startsAt))))), appointments?.length === 0 ? /* @__PURE__ */ import_react2.default.createElement("p", null, "There are no appointments scheduled for today") : /* @__PURE__ */ import_react2.default.createElement(Appointment_default, { ...appointments[selectedAppointment] }));
+  };
+  var AppointmentsDayView_default = AppointmentsDayView;
+
+  // static/react/App.tsx
   function App() {
-    return /* @__PURE__ */ import_react.default.createElement("div", { className: "pt-5 mt-5" }, /* @__PURE__ */ import_react.default.createElement("h1", null, "Entry point react"));
+    const today = /* @__PURE__ */ new Date();
+    const twoAppointments = [
+      { startsAt: today.setHours(12, 0), firstName: "Alice" },
+      { startsAt: today.setHours(13, 0), firstName: "Jon" }
+    ];
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "pt-5 mt-5" }, /* @__PURE__ */ import_react3.default.createElement("h1", null, "Entry point react"), /* @__PURE__ */ import_react3.default.createElement(AppointmentsDayView_default, { appointments: twoAppointments }));
   }
   var App_default = App;
 
   // static/react/main.tsx
   var root = import_client.default.createRoot(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ import_react2.default.createElement(import_react2.default.StrictMode, null, /* @__PURE__ */ import_react2.default.createElement(App_default, null))
+    /* @__PURE__ */ import_react4.default.createElement(import_react4.default.StrictMode, null, /* @__PURE__ */ import_react4.default.createElement(App_default, null))
   );
 })();
 /*! Bundled license information:

@@ -1,8 +1,15 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} **/
 module.exports = {
-  testEnvironment: "node",
+  extensionsToTreatAsEsm: [".ts"],
+  moduleNameMapper: {"^(\\.{1,2}/.*)\\.js$": "$1"},
+  testEnvironment: "jsdom",
   roots: ["static/react"],
+  globals: {
+    "IS_REACT_ACT_ENVIRONMENT": true
+  },
   transform: {
-    "^.+.tsx?$": ["ts-jest",{}],
+    "^.+\\.tsx?$": ["ts-jest",{
+      useESM: true,
+    }],
   },
 };
