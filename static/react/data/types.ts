@@ -4,9 +4,12 @@ export interface ICustomer {
     phoneNumber?: string
 }
 
-export interface IAppointments {
+export interface IGigg {
     startsAt?: number
+    stylist?: string
+    service?: string
+    notes: string
 }
 
-export interface IAppointmentsList extends ICustomer, IAppointments {
+export interface IGiggsList extends ICustomer, IGigg {
 }

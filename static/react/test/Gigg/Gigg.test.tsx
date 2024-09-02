@@ -1,12 +1,14 @@
 import React, { act } from "react";
 import ReactDOM from "react-dom/client";
-import Appointment from "../../components/Appointment"
-import { ICustomer, IAppointmentsList } from "../../data/types";
+import Gigg from "../../components/Gigg"
+import { ICustomer, IGiggsList } from "../../data/types";
 
-describe("Appointment", () => {
+import "@testing-library/jest-dom/extend-expect"
+
+describe("Gigg", () => {
     let container: HTMLDivElement;
     const today = new Date();
-    const appointment: IAppointmentsList = { startsAt: today.setHours(12, 0),  firstName: "Alice", lastName: "Bree", phoneNumber: "999-999-9999" }
+    const appointment: IGiggsList = { startsAt: today.setHours(12, 0), stylist: "Eve", service: "Hair cut", notes: "Modern look",  firstName: "Alice", lastName: "Bree", phoneNumber: "999-999-9999" }
 
     beforeEach(() => {
         container = document.createElement("div")
@@ -20,13 +22,13 @@ describe("Appointment", () => {
 
     it("renders the customer first name", () => {
         const customer  = { firstName: "Jon" }
-        render(<Appointment {...customer} />)
+        render(<Gigg {...customer} />)
 
         expect(document.body.textContent).toContain("Jon")
     })
 
     it("renders a div classified as container", () => {
-      render(<Appointment {...appointment} />)
+      render(<Gigg {...appointment} />)
       const divel = document.querySelector("div#appointment")
       const container = divel?.getAttribute("class")
 
@@ -35,7 +37,7 @@ describe("Appointment", () => {
     })
 
     it("renders a table", () => {
-      render(<Appointment {...appointment} />)
+      render(<Gigg {...appointment} />)
       const tablenode = document.querySelector("table")
       let table = tablenode?.getAttribute("class")
 
@@ -44,7 +46,7 @@ describe("Appointment", () => {
     })
 
     it("renders a table head", () => {
-      render(<Appointment {...appointment} />)
+      render(<Gigg {...appointment} />)
       const tablehead = document.querySelector("thead")
       const trow = document.querySelector("tr")
 
@@ -53,17 +55,17 @@ describe("Appointment", () => {
     })
 
     it("renders table header data", () => {
-      render(<Appointment {...appointment} />)
+      render(<Gigg {...appointment} />)
       const tdList = document.querySelectorAll("tr > th")
 
-      expect(tdList).toHaveLength(3)
+      expect(tdList).toHaveLength(6)
     })
 
     it("renders table data", () => {
-      render(<Appointment {...appointment} />)
+      render(<Gigg {...appointment} />)
 
       const tabledataList = document.querySelectorAll("tr > td")
 
-      expect(tabledataList).toHaveLength(3)
+      expect(tabledataList).toHaveLength(6)
     })
 })

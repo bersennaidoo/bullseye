@@ -23589,7 +23589,7 @@
   // static/react/App.tsx
   var import_react3 = __toESM(require_react());
 
-  // static/react/components/AppointmentsDayView.tsx
+  // static/react/components/GiggsView.tsx
   var import_react2 = __toESM(require_react());
 
   // static/react/utils/timeOfDay.ts
@@ -23598,30 +23598,30 @@
     return `${h}:${m}`;
   };
 
-  // static/react/components/Appointment.tsx
+  // static/react/components/Gigg.tsx
   var import_react = __toESM(require_react());
-  var Appointment = (props) => {
-    const { firstName, lastName, phoneNumber, startsAt } = props;
-    return /* @__PURE__ */ import_react.default.createElement("div", { id: "appointment", className: "container" }, /* @__PURE__ */ import_react.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react.default.createElement("thead", null, /* @__PURE__ */ import_react.default.createElement("tr", null, /* @__PURE__ */ import_react.default.createElement("th", null, "firstName"), /* @__PURE__ */ import_react.default.createElement("th", null, "lastName"), /* @__PURE__ */ import_react.default.createElement("th", null, "phoneNumber"))), /* @__PURE__ */ import_react.default.createElement("tbody", null, /* @__PURE__ */ import_react.default.createElement("tr", null, /* @__PURE__ */ import_react.default.createElement("td", null, firstName), /* @__PURE__ */ import_react.default.createElement("td", null, lastName), /* @__PURE__ */ import_react.default.createElement("td", null, phoneNumber)))));
+  var Gigg = (props) => {
+    const { firstName, lastName, phoneNumber, startsAt, stylist, service, notes } = props;
+    return /* @__PURE__ */ import_react.default.createElement("div", { id: "appointment", className: "container" }, /* @__PURE__ */ import_react.default.createElement("h2", { className: "text-center mb-4 p-3" }, firstName, " gigg at ", appointmentTimeOfDay(startsAt)), /* @__PURE__ */ import_react.default.createElement("table", { className: "table" }, /* @__PURE__ */ import_react.default.createElement("thead", null, /* @__PURE__ */ import_react.default.createElement("tr", null, /* @__PURE__ */ import_react.default.createElement("th", null, "firstName"), /* @__PURE__ */ import_react.default.createElement("th", null, "lastName"), /* @__PURE__ */ import_react.default.createElement("th", null, "phoneNumber"), /* @__PURE__ */ import_react.default.createElement("th", null, "stylist"), /* @__PURE__ */ import_react.default.createElement("th", null, "service"), /* @__PURE__ */ import_react.default.createElement("th", null, "notes"))), /* @__PURE__ */ import_react.default.createElement("tbody", null, /* @__PURE__ */ import_react.default.createElement("tr", null, /* @__PURE__ */ import_react.default.createElement("td", null, firstName), /* @__PURE__ */ import_react.default.createElement("td", null, lastName), /* @__PURE__ */ import_react.default.createElement("td", null, phoneNumber), /* @__PURE__ */ import_react.default.createElement("td", null, stylist), /* @__PURE__ */ import_react.default.createElement("td", null, service), /* @__PURE__ */ import_react.default.createElement("td", null, notes)))));
   };
-  var Appointment_default = Appointment;
+  var Gigg_default = Gigg;
 
-  // static/react/components/AppointmentsDayView.tsx
-  var AppointmentsDayView = (props) => {
+  // static/react/components/GiggsView.tsx
+  var GiggsView = (props) => {
     const { appointments } = props;
-    const [selectedAppointment, setSelectedAppointment] = (0, import_react2.useState)(0);
-    return /* @__PURE__ */ import_react2.default.createElement("div", { id: "appointmentsDayView", className: "container" }, /* @__PURE__ */ import_react2.default.createElement("ol", null, appointments?.map((ap, i) => /* @__PURE__ */ import_react2.default.createElement("li", { key: ap.startsAt }, /* @__PURE__ */ import_react2.default.createElement("button", { type: "button", onClick: () => setSelectedAppointment(i) }, appointmentTimeOfDay(ap.startsAt))))), appointments?.length === 0 ? /* @__PURE__ */ import_react2.default.createElement("p", null, "There are no appointments scheduled for today") : /* @__PURE__ */ import_react2.default.createElement(Appointment_default, { ...appointments[selectedAppointment] }));
+    const [selectedGigg, setSelectedGigg] = (0, import_react2.useState)(0);
+    return /* @__PURE__ */ import_react2.default.createElement("div", { id: "appointmentsDayView", className: "container" }, /* @__PURE__ */ import_react2.default.createElement("ol", null, appointments?.map((ap, i) => /* @__PURE__ */ import_react2.default.createElement("li", { key: ap.startsAt }, /* @__PURE__ */ import_react2.default.createElement("button", { type: "button", onClick: () => setSelectedGigg(i) }, appointmentTimeOfDay(ap.startsAt))))), appointments?.length === 0 ? /* @__PURE__ */ import_react2.default.createElement("p", null, "There are no appointments scheduled for today") : /* @__PURE__ */ import_react2.default.createElement(Gigg_default, { ...appointments[selectedGigg] }));
   };
-  var AppointmentsDayView_default = AppointmentsDayView;
+  var GiggsView_default = GiggsView;
 
   // static/react/App.tsx
   function App() {
     const today = /* @__PURE__ */ new Date();
     const twoAppointments = [
-      { startsAt: today.setHours(12, 0), firstName: "Alice", lastName: "Bree", phoneNumber: "999-999-9999" },
-      { startsAt: today.setHours(13, 0), firstName: "Jon", lastName: "Jonn", phoneNumber: "999-999-8888" }
+      { startsAt: today.setHours(12, 0), stylist: "Eve", service: "Hair trim", notes: "See you later", firstName: "Alice", lastName: "Bree", phoneNumber: "999-999-9999" },
+      { startsAt: today.setHours(13, 0), stylist: "Eve", service: "Beard trim", notes: "See you later", firstName: "Jon", lastName: "Jonn", phoneNumber: "999-999-8888" }
     ];
-    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "pt-5 mt-5" }, /* @__PURE__ */ import_react3.default.createElement("h1", null, "Entry point react"), /* @__PURE__ */ import_react3.default.createElement(AppointmentsDayView_default, { appointments: twoAppointments }));
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "pt-5 mt-5" }, /* @__PURE__ */ import_react3.default.createElement("h1", null, "Entry point react"), /* @__PURE__ */ import_react3.default.createElement(GiggsView_default, { appointments: twoAppointments }));
   }
   var App_default = App;
 
